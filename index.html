@@ -1193,17 +1193,19 @@
             if (!marquee) return;
 
             function updateMarquee() {
-                marquee.style.animation = 'none';
-                void marquee.offsetWidth;
+  marquee.style.animation = 'none';
+  void marquee.offsetWidth;
 
-                marquee.innerHTML = `
+  setTimeout(() => {
+    marquee.innerHTML = `
       <i class="${messages[index].icon}"></i>
       <span>${messages[index].text}</span>
     `;
+    marquee.style.animation = 'marquee-slide 20s linear forwards';
+    index = (index + 1) % messages.length; // di chuyển vào đây
+  }, 50);
+}
 
-                marquee.style.animation = 'marquee-slide 20s linear forwards';
-                index = (index + 1) % messages.length;
-            }
 
             updateMarquee();
             setInterval(updateMarquee, 21000);
