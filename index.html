@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <title>Nhà Hàng Cao Cấp Ussina | Đặt Bàn, Menu Đa Dạng, Không Gian Sang Trọng</title>
     <link rel="icon" type="image/png" href="https://www.s79vietnam.com/assets/images/favicon.png">
-    <meta property="og:image"
-        content="https://ussinasky.com/bia.jpg" />
+    <meta property="og:image" content="https://ussinasky.com/bia.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -352,22 +351,251 @@
             height: 3rem;
             color: #ffc107;
         }
+
+        /* 83. loader */
+        .preloader {
+            background-color: #0d4273;
+            /* Màu xanh */
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            z-index: 999111111;
+            left: 0;
+            top: 0;
+            transition-duration: 1s;
+            -webkit-transition-duration: 1s;
+            transition-timing-function: cubic-bezier(0.86, 0, 0.09, 1);
+            -webkit-transition-timing-function: cubic-bezier(0.86, 0, 0.09, 1);
+        }
+
+        .page-loaded .preloader {
+            top: -100%;
+            z-index: 1111111;
+        }
+
+        .preloader .container {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: auto;
+            animation: rotate-move 2s ease-in-out infinite;
+        }
+
+        .dot {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #000;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .dot-3 {
+            background-color: #8b0000;
+            animation: dot-3-move 2s ease infinite, index 6s ease infinite;
+        }
+
+        .dot-2 {
+            background-color: #d4af37;
+            animation: dot-2-move 2s ease infinite, index 6s -4s ease infinite;
+        }
+
+        .dot-1 {
+            background-color: #5d4037;
+            animation: dot-1-move 2s ease infinite, index 6s -2s ease infinite;
+        }
+
+        @keyframes dot-3-move {
+            20% {
+                transform: scale(1)
+            }
+
+            45% {
+                transform: translateY(-18px) scale(.45)
+            }
+
+            60% {
+                transform: translateY(-90px) scale(.45)
+            }
+
+            80% {
+                transform: translateY(-90px) scale(.45)
+            }
+
+            100% {
+                transform: translateY(0px) scale(1)
+            }
+        }
+
+        @keyframes dot-2-move {
+            20% {
+                transform: scale(1)
+            }
+
+            45% {
+                transform: translate(-16px, 12px) scale(.45)
+            }
+
+            60% {
+                transform: translate(-80px, 60px) scale(.45)
+            }
+
+            80% {
+                transform: translate(-80px, 60px) scale(.45)
+            }
+
+            100% {
+                transform: translateY(0px) scale(1)
+            }
+        }
+
+        @keyframes dot-1-move {
+            20% {
+                transform: scale(1)
+            }
+
+            45% {
+                transform: translate(16px, 12px) scale(.45)
+            }
+
+            60% {
+                transform: translate(80px, 60px) scale(.45)
+            }
+
+            80% {
+                transform: translate(80px, 60px) scale(.45)
+            }
+
+            100% {
+                transform: translateY(0px) scale(1)
+            }
+        }
+
+        @keyframes rotate-move {
+            55% {
+                transform: translate(-50%, -50%) rotate(0deg)
+            }
+
+            80% {
+                transform: translate(-50%, -50%) rotate(360deg)
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg)
+            }
+        }
+
+        .header-top {
+            background: linear-gradient(to right, #0d4273, #3269a8);
+            color: #fff;
+            font-size: 14px;
+            padding: 10px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .header-top .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 0 15px;
+        }
+
+        .header-top span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-top i {
+            color: #ffdd57;
+        }
+
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            position: relative;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee-slide 20s linear infinite;
+        }
+
+        .marquee-content span {
+            display: inline-block;
+            padding-right: 100%;
+        }
+
+        @keyframes marquee-slide {
+            0% {
+                transform: translateX(0%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
     </style>
 </head>
 
 <body>
+    <!-- preloader -->
+    <div class="preloader">
+        <div class="container">
+            <div class="dot dot-1"></div>
+            <div class="dot dot-2"></div>
+            <div class="dot dot-3"></div>
+        </div>
+    </div>
+    <script>
+        // Tự động thêm class sau 3s để trượt preloader lên
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                document.body.classList.add('page-loaded');
+            }, 2000);
+        });
+    </script>
+
     <div class="loading-overlay" id="loading-overlay">
         <div class="spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>
     <header class="mb-2">
+        <div class="header-top">
+            <div class="container">
+                <div class="marquee">
+                    <div class="marquee-content" id="marquee-text">
+                        <i class="fas fa-bell"></i>
+                        <span>Hệ thống đặt phòng trực tuyến hoạt động 24/7 – Liên hệ nếu cần hỗ trợ !</span>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid px-3">
                 <a class="navbar-brand d-flex align-items-center text-white" href="#"
                     style="font-weight: bold; font-family: 'Segoe UI', Tahoma, sans-serif;">
-                    <img src="https://ussinasky.com/avt.jpg"
-                        alt="Avatar" style="
+                    <img src="https://ussinasky.com/avt.jpg" alt="Avatar" style="
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -412,8 +640,8 @@
             <div class="col-md-7 p-4 d-flex flex-column justify-content-between">
                 <div>
                     <span class="status-badge"><i class="bi bi-check-circle-fill"></i> Còn bàn</span>
-                    <div class="location-name">Ussina Sky 77 - Aging Beef & Bar 
-</div>
+                    <div class="location-name">Ussina Sky 77 - Aging Beef & Bar
+                    </div>
                     <div class="info-line mb-2"><i class="bi bi-geo-alt-fill"></i>Tầng 77, Landmark 81</div>
                     <div class="info-line"><i class="bi bi-clock-fill"></i>11:00 – 23:00 hằng ngày</div>
                 </div>
@@ -497,15 +725,15 @@
                         <div class="col-md-6 w-100">
                             <label for="setSelect" class="form-label">Loại Set</label>
                             <select class="form-select" id="setSelect">
-  <option value="" disabled selected>-- Chọn Set Menu --</option>
-  <option value="TEA SET - 399k/1">TEA SET - 399k/1</option>
-  <option value="TEA SET - 599k/1">TEA SET - 599k/1</option>
-  <option value="LUNCH SET - 770k/1">LUNCH SET - 770k/1</option>
-  <option value="MANKAI SET - 1990k/1">MANKAI SET - 1990k/1</option>
-  <option value="KOIBITO SET - 1770k/1">KOIBITO SET - 1770k/1</option>
-  <option value="BÓ HOA HỒNG ĐỎ TƯƠI - 499K">BÓ HOA HỒNG ĐỎ TƯƠI - 499K</option>
-  <option value="BÁNH KEM SINH NHẬT - 399K">BÁNH KEM SINH NHẬT - 399K</option>
-</select>
+                                <option value="" disabled selected>-- Chọn Set Menu --</option>
+                                <option value="TEA SET - 399k/1">TEA SET - 399k/1</option>
+                                <option value="TEA SET - 599k/1">TEA SET - 599k/1</option>
+                                <option value="LUNCH SET - 770k/1">LUNCH SET - 770k/1</option>
+                                <option value="MANKAI SET - 1990k/1">MANKAI SET - 1990k/1</option>
+                                <option value="KOIBITO SET - 1770k/1">KOIBITO SET - 1770k/1</option>
+                                <option value="BÓ HOA HỒNG ĐỎ TƯƠI - 499K">BÓ HOA HỒNG ĐỎ TƯƠI - 499K</option>
+                                <option value="BÁNH KEM SINH NHẬT - 399K">BÁNH KEM SINH NHẬT - 399K</option>
+                            </select>
                         </div>
                         <div class="col-md-3" style="margin-top:12px;">
                             <label for="setQuantity" class="form-label">Số lượng</label>
@@ -551,84 +779,100 @@
             <div class="row g-4">
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="card h-100 menu-card">
-                        <img src="https://ussinasky.com/teaset.jpg"
-                            alt="Menu 1">
+                        <img src="https://ussinasky.com/teaset.jpg" alt="Menu 1">
                         <div class="card-body">
                             <h5>TEA SET</h5>
                             <p>
-  Hòa mình vào không gian thư thái giữa những tầng mây, Ussina Sky 77 trân trọng mời Quý thực khách trải nghiệm bữa tiệc trà chiều đầy nghệ thuật với <strong>𝐒𝐤𝐲𝐥𝐢𝐧𝐞 𝐀𝐟𝐭𝐞𝐫𝐧𝐨𝐨𝐧 𝐓𝐞𝐚 𝐒𝐞𝐭</strong> – sự kết hợp hoàn hảo giữa phong cách trà chiều Anh Quốc thanh lịch với ẩm thực Nhật Bản tinh tế.<br>
-  Khám phá ngay <strong>𝐒𝐤𝐲𝐥𝐢𝐧𝐞 𝐀𝐟𝐭𝐞𝐫𝐧𝐨𝐨𝐧 𝐓𝐞𝐚 𝐒𝐞𝐭</strong>, với 2 thực đơn dành cho bạn:<br>
-  ✨ <strong>𝐀𝐟𝐭𝐞𝐫𝐧𝐨𝐨𝐧 𝐁𝐥𝐢𝐬𝐬 – 𝟑𝟗𝟎,𝟎𝟎𝟎 𝐕𝐍𝐃/ 𝐤𝐡𝐚́𝐜𝐡</strong>, bao gồm 8 món ngọt và 1 thức uống tự chọn.<br>
-  ✨ <strong>𝐆𝐨𝐥𝐝𝐞𝐧 𝐇𝐨𝐮𝐫 – 𝟓𝟗𝟎,𝟎𝟎𝟎 𝐕𝐍𝐃/ 𝐤𝐡𝐚́𝐜𝐡</strong>, bao gồm 5 món ngọt, 5 món mặn và 2 thức uống tự chọn.<br>
-  📌 <strong>Điều kiện áp dụng:</strong><br>
-  – Giá chưa bao gồm VAT<br>
-  – Áp dụng phục vụ từ 2 set cùng loại trở lên<br>
-  – Vui lòng đặt trước 1 ngày<br>
-  – Thời gian phục vụ từ 14h – 17h mỗi ngày.
-</p>
+                                Hòa mình vào không gian thư thái giữa những tầng mây, Ussina Sky 77 trân trọng mời Quý
+                                thực khách trải nghiệm bữa tiệc trà chiều đầy nghệ thuật với <strong>𝐒𝐤𝐲𝐥𝐢𝐧𝐞
+                                    𝐀𝐟𝐭𝐞𝐫𝐧𝐨𝐨𝐧 𝐓𝐞𝐚 𝐒𝐞𝐭</strong> – sự kết hợp hoàn hảo giữa phong cách trà
+                                chiều Anh Quốc thanh lịch với ẩm thực Nhật Bản tinh tế.<br>
+                                Khám phá ngay <strong>𝐒𝐤𝐲𝐥𝐢𝐧𝐞 𝐀𝐟𝐭𝐞𝐫𝐧𝐨𝐨𝐧 𝐓𝐞𝐚 𝐒𝐞𝐭</strong>, với 2
+                                thực đơn dành cho bạn:<br>
+                                ✨ <strong>𝐀𝐟𝐭𝐞𝐫𝐧𝐨𝐨𝐧 𝐁𝐥𝐢𝐬𝐬 – 𝟑𝟗𝟎,𝟎𝟎𝟎 𝐕𝐍𝐃/ 𝐤𝐡𝐚́𝐜𝐡</strong>,
+                                bao gồm 8 món ngọt và 1 thức uống tự chọn.<br>
+                                ✨ <strong>𝐆𝐨𝐥𝐝𝐞𝐧 𝐇𝐨𝐮𝐫 – 𝟓𝟗𝟎,𝟎𝟎𝟎 𝐕𝐍𝐃/ 𝐤𝐡𝐚́𝐜𝐡</strong>, bao gồm 5
+                                món ngọt, 5 món mặn và 2 thức uống tự chọn.<br>
+                                📌 <strong>Điều kiện áp dụng:</strong><br>
+                                – Giá chưa bao gồm VAT<br>
+                                – Áp dụng phục vụ từ 2 set cùng loại trở lên<br>
+                                – Vui lòng đặt trước 1 ngày<br>
+                                – Thời gian phục vụ từ 14h – 17h mỗi ngày.
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="card h-100 menu-card">
-                        <img src="https://ussinasky.com/lunchset.jpg"
-                            alt="Menu 2">
+                        <img src="https://ussinasky.com/lunchset.jpg" alt="Menu 2">
                         <div class="card-body">
                             <h5>LUNCH SET</h5>
                             <p>
-  <strong>SKY LUNCH SET:</strong> Bao gồm 5 món ăn và 01 món nước – Giá chỉ từ <strong>770.000VND+/khách</strong><br>
-  Trải nghiệm bữa trưa hoàn toàn mới tại Ussina với <strong>Sky Lunch Set</strong>, set menu được thiết kế để đưa bạn lên một “hành trình ẩm thực trên mây.”<br>
-  Bữa trưa sẽ thêm phần phong phú và thú vị khi khách có thể tự do mix & match thực đơn theo sở thích với 5 món ăn từ salad, khai vị, món chính, món ăn kèm đến tráng miệng, cùng một thức uống là trà hoặc cà phê.<br>
-  Không chỉ tập trung vào việc mang đến những bữa ăn đẳng cấp, Ussina còn khát khao nâng cao trải nghiệm ẩm thực thượng hạng cho mỗi thực khách.<br>
-  Khám phá ngay bữa trưa đẳng cấp với <strong>Sky Lunch Set</strong> – chỉ <strong>770.000VND+/khách</strong>, tại không gian sang trọng của <strong>Ussina Sky 77</strong> giữa tầng mây.<br>
-  📌 <strong>ĐIỀU KIỆN ÁP DỤNG:</strong><br>
-  – Thời gian phục vụ menu từ 11h00 đến 14h00 vào các ngày từ Thứ 2 đến Chủ Nhật.<br>
-  – Giá trên chưa bao gồm VAT.
-</p>
+                                <strong>SKY LUNCH SET:</strong> Bao gồm 5 món ăn và 01 món nước – Giá chỉ từ
+                                <strong>770.000VND+/khách</strong><br>
+                                Trải nghiệm bữa trưa hoàn toàn mới tại Ussina với <strong>Sky Lunch Set</strong>, set
+                                menu được thiết kế để đưa bạn lên một “hành trình ẩm thực trên mây.”<br>
+                                Bữa trưa sẽ thêm phần phong phú và thú vị khi khách có thể tự do mix & match thực đơn
+                                theo sở thích với 5 món ăn từ salad, khai vị, món chính, món ăn kèm đến tráng miệng,
+                                cùng một thức uống là trà hoặc cà phê.<br>
+                                Không chỉ tập trung vào việc mang đến những bữa ăn đẳng cấp, Ussina còn khát khao nâng
+                                cao trải nghiệm ẩm thực thượng hạng cho mỗi thực khách.<br>
+                                Khám phá ngay bữa trưa đẳng cấp với <strong>Sky Lunch Set</strong> – chỉ
+                                <strong>770.000VND+/khách</strong>, tại không gian sang trọng của <strong>Ussina Sky
+                                    77</strong> giữa tầng mây.<br>
+                                📌 <strong>ĐIỀU KIỆN ÁP DỤNG:</strong><br>
+                                – Thời gian phục vụ menu từ 11h00 đến 14h00 vào các ngày từ Thứ 2 đến Chủ Nhật.<br>
+                                – Giá trên chưa bao gồm VAT.
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="card h-100 menu-card">
-                        <img src="https://ussinasky.com/mankaiset.jpg"
-                            alt="Menu 3">
+                        <img src="https://ussinasky.com/mankaiset.jpg" alt="Menu 3">
                         <div class="card-body">
                             <h5>MANKAI SET</h5>
                             <p>
-  Không chỉ là biểu tượng trong văn hóa Nhật Bản, hoa anh đào còn thể hiện ý nghĩa về sự tái sinh, đổi mới và những khởi đầu đầy hy vọng. Và giờ đây, bạn có thể cảm nhận trọn vẹn vẻ đẹp tinh tế ấy thông qua hành trình thưởng thức 6 món ăn đặc sắc:<br>
-  🌸 Cá Hồng & Cá Hồi Ngâm Tương<br>
-  🌸 Salad Trái Cây Mùa Xuân & Cà Chua Hokkaido Dùng Kèm Phô Mai Burrata<br>
-  🌸 Bò Wagyu Ủ Tuyết Nướng Trên Đá Nóng Núi Phú Sĩ<br>
-  🌸 Sò Điệp Áp Chảo Dùng Kèm Khoai Tây Nghiền Hương Sakura<br>
-  🌸 Mì Fettuccine Cua Sốt Kem<br>
-  🌸 Bánh Mousse Hoa Anh Đào<br>
-  🥂 Đặc biệt, tặng ngay <strong>𝟎𝟏 𝐋𝐀 𝐕𝐈𝐄 𝐄𝐍 𝐒𝐀𝐊𝐔𝐑𝐀 𝐂𝐨𝐜𝐤𝐭𝐚𝐢𝐥/ 𝐌𝐨𝐜𝐤𝐭𝐚𝐢𝐥</strong> cho mỗi thực khách khi dùng <strong>𝐌𝐀𝐍𝐊𝐀𝐈 𝐒𝐄𝐓 - 𝟏.𝟗𝟗𝟎.𝟎𝟎𝟎 𝐕𝐍𝐃+/𝐊𝐡𝐚́𝐜𝐡</strong>
-</p>
+                                Không chỉ là biểu tượng trong văn hóa Nhật Bản, hoa anh đào còn thể hiện ý nghĩa về sự
+                                tái sinh, đổi mới và những khởi đầu đầy hy vọng. Và giờ đây, bạn có thể cảm nhận trọn
+                                vẹn vẻ đẹp tinh tế ấy thông qua hành trình thưởng thức 6 món ăn đặc sắc:<br>
+                                🌸 Cá Hồng & Cá Hồi Ngâm Tương<br>
+                                🌸 Salad Trái Cây Mùa Xuân & Cà Chua Hokkaido Dùng Kèm Phô Mai Burrata<br>
+                                🌸 Bò Wagyu Ủ Tuyết Nướng Trên Đá Nóng Núi Phú Sĩ<br>
+                                🌸 Sò Điệp Áp Chảo Dùng Kèm Khoai Tây Nghiền Hương Sakura<br>
+                                🌸 Mì Fettuccine Cua Sốt Kem<br>
+                                🌸 Bánh Mousse Hoa Anh Đào<br>
+                                🥂 Đặc biệt, tặng ngay <strong>𝟎𝟏 𝐋𝐀 𝐕𝐈𝐄 𝐄𝐍 𝐒𝐀𝐊𝐔𝐑𝐀 𝐂𝐨𝐜𝐤𝐭𝐚𝐢𝐥/
+                                    𝐌𝐨𝐜𝐤𝐭𝐚𝐢𝐥</strong> cho mỗi thực khách khi dùng <strong>𝐌𝐀𝐍𝐊𝐀𝐈 𝐒𝐄𝐓 -
+                                    𝟏.𝟗𝟗𝟎.𝟎𝟎𝟎 𝐕𝐍𝐃+/𝐊𝐡𝐚́𝐜𝐡</strong>
+                            </p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="card h-100 menu-card">
-                        <img src="https://ussinasky.com/koibitoset.jpg"
-                            alt="Menu 3">
+                        <img src="https://ussinasky.com/koibitoset.jpg" alt="Menu 3">
                         <div class="card-body">
                             <h5>KOIBITO SET</h5>
                             <p>
-  Trong bầu không khí lung linh giữa những tầng mây, còn gì tuyệt vời hơn khi cùng nửa kia thưởng thức bữa tiệc vị giác thăng hoa với thực đơn đặc sắc:<br>
-  🔸Mousse Gan Ngỗng Pháp & Ức Vịt Pháp Dùng Kèm Trái Cây<br>
-  🔸Salad Romaine Dùng Kèm Thịt Heo Muối, Trứng Lòng Đào & Sốt Phô Mai<br>
-  🔸Bò Wagyu Ủ Tuyết Nướng Trên Đá Nóng Núi Phú Sĩ<br>
-  🔸Risotto Cải Bó Xôi Hải Sản Dùng Kèm Phô Mai Cháy<br>
-  🔸Bánh Mousse Sô-cô-la & Mâm Xôi<br>
-  Khi thưởng thức thực đơn <strong>𝐊𝐎𝐈𝐁𝐈𝐓𝐎 𝐒𝐄𝐓 - 𝟏.𝟕𝟕𝟎.𝟎𝟎𝟎 𝐕𝐍𝐃+/𝐊𝐡𝐚́𝐜𝐡</strong><br>
-  🍸 Ussina tặng ngay <strong>01 Heart of Love Cocktail/Mocktail</strong> trong <strong>𝐋𝐎𝐕𝐄 𝐃𝐑𝐈𝐍𝐊 𝐏𝐀𝐂𝐊𝐀𝐆𝐄</strong> đến mỗi thực khách.
-</p>
+                                Trong bầu không khí lung linh giữa những tầng mây, còn gì tuyệt vời hơn khi cùng nửa kia
+                                thưởng thức bữa tiệc vị giác thăng hoa với thực đơn đặc sắc:<br>
+                                🔸Mousse Gan Ngỗng Pháp & Ức Vịt Pháp Dùng Kèm Trái Cây<br>
+                                🔸Salad Romaine Dùng Kèm Thịt Heo Muối, Trứng Lòng Đào & Sốt Phô Mai<br>
+                                🔸Bò Wagyu Ủ Tuyết Nướng Trên Đá Nóng Núi Phú Sĩ<br>
+                                🔸Risotto Cải Bó Xôi Hải Sản Dùng Kèm Phô Mai Cháy<br>
+                                🔸Bánh Mousse Sô-cô-la & Mâm Xôi<br>
+                                Khi thưởng thức thực đơn <strong>𝐊𝐎𝐈𝐁𝐈𝐓𝐎 𝐒𝐄𝐓 - 𝟏.𝟕𝟕𝟎.𝟎𝟎𝟎
+                                    𝐕𝐍𝐃+/𝐊𝐡𝐚́𝐜𝐡</strong><br>
+                                🍸 Ussina tặng ngay <strong>01 Heart of Love Cocktail/Mocktail</strong> trong
+                                <strong>𝐋𝐎𝐕𝐄 𝐃𝐑𝐈𝐍𝐊 𝐏𝐀𝐂𝐊𝐀𝐆𝐄</strong> đến mỗi thực khách.
+                            </p>
                         </div>
                     </div>
                 </div>
 
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="card h-100 menu-card">
                         <img src="https://www.s79vietnam.com/assets/images/hoatuoi.webp" alt="hoatuoi">
                         <div class="card-body">
@@ -659,40 +903,38 @@
 
             </div>
         </div>
-<div data-aos="fade-up" data-aos-delay="100" style="margin-top:20px;">
-    <button type="button" class="btn btn-primary w-100 mb-3" onclick="window.open('https://drive.google.com/file/d/1uZmpabIO-4ZfJloxISKC5hAQNBikWFZx/preview', '_blank')">
-        <i class="bi bi-list-ul me-2"></i> Xem Menu món lẻ
-    </button>
-    <button type="button" class="btn btn-primary w-100" onclick="window.open('https://drive.google.com/file/d/1iGRU94kZJcJLY1okvWZSUbPOb62b7Z5b/preview', '_blank')">
-        <i class="bi bi-cup-straw me-2"></i> Xem Menu đồ uống
-    </button>
-</div>
+        <div data-aos="fade-up" data-aos-delay="100" style="margin-top:20px;">
+            <button type="button" class="btn btn-primary w-100 mb-3"
+                onclick="window.open('https://drive.google.com/file/d/1uZmpabIO-4ZfJloxISKC5hAQNBikWFZx/preview', '_blank')">
+                <i class="bi bi-list-ul me-2"></i> Xem Menu món lẻ
+            </button>
+            <button type="button" class="btn btn-primary w-100"
+                onclick="window.open('https://drive.google.com/file/d/1iGRU94kZJcJLY1okvWZSUbPOb62b7Z5b/preview', '_blank')">
+                <i class="bi bi-cup-straw me-2"></i> Xem Menu đồ uống
+            </button>
+        </div>
 
         <div class="checkin-section" id="checkin">
             <h4 class="checkin-title">Khách hàng đã check-in</h4>
             <div class="row g-4">
                 <div class="col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="checkin-card">
-                        <img src="https://ussinasky.com/checkin1.jpg"
-                            alt="Check-in 1">
+                        <img src="https://ussinasky.com/checkin1.jpg" alt="Check-in 1">
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="checkin-card">
-                        <img src="https://ussinasky.com/checkin2.jpg"
-                            alt="Check-in 2">
+                        <img src="https://ussinasky.com/checkin2.jpg" alt="Check-in 2">
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="checkin-card">
-                        <img src="https://ussinasky.com/checkin3.jpg"
-                            alt="Check-in 3">
+                        <img src="https://ussinasky.com/checkin3.jpg" alt="Check-in 3">
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="checkin-card">
-                        <img src="https://ussinasky.com/checkin4.jpg"
-                            alt="Check-in 3">
+                        <img src="https://ussinasky.com/checkin4.jpg" alt="Check-in 3">
                     </div>
                 </div>
             </div>
@@ -742,8 +984,7 @@
                         Sử dụng App Internet Banking hoặc ứng dụng camera hỗ trợ QR code để quét mã
                     </p>
                     <div class="mx-auto mt-1 p-1 rounded-xl border-2 border-gray-300 shadow-lg bg-white w-fit">
-                        <img id="link-qrcode" src="https://img.vietqr.io/image/mbbank-002471993-compact.jpg?amount=1000000&addInfo=CK%20MS764811&accountName=DO%20VAN%20MINH"
-                            alt="Mã QR thanh toán" class="w-36 h-auto mx-auto" />
+                        <img id="link-qrcode" src="" alt="Mã QR thanh toán" class="w-36 h-auto mx-auto" />
                     </div>
                 </div>
 
@@ -927,6 +1168,49 @@
             setSelect.value = "";
             quantityInput.value = 1;
         }
+    </script>
+    <script>
+        function initHeader() {
+            // Toggle menu (mobile)
+            const toggle = document.getElementById('menuToggle');
+            const nav = document.getElementById('navMenu');
+            if (toggle && nav) {
+                toggle.addEventListener('click', () => {
+                    nav.classList.toggle('show');
+                });
+            }
+
+            // Marquee chuyển text
+            const messages = [
+                { icon: 'fas fa-bell', text: 'Hệ thống đặt bàn trực tuyến hoạt động 24/7 – Liên hệ nếu cần hỗ trợ !' },
+                { icon: 'fas fa-gift', text: 'Đặt bàn trước – Nhận ngay gói trang trí miễn phí cho dịp sinh nhật, kỷ niệm hoặc cầu hôn !' },
+                { icon: 'fas fa-star', text: 'Trải nghiệm ẩm thực đỉnh cao với thực đơn 5 sao của chúng tôi !' },
+                { icon: 'fas fa-users', text: 'Hơn 10.000 thực khách đã tin tưởng và lựa chọn nhà hàng mỗi năm !' }
+            ];
+
+            let index = 0;
+            const marquee = document.getElementById('marquee-text');
+            if (!marquee) return;
+
+            function updateMarquee() {
+                marquee.style.animation = 'none';
+                void marquee.offsetWidth;
+
+                marquee.innerHTML = `
+      <i class="${messages[index].icon}"></i>
+      <span>${messages[index].text}</span>
+    `;
+
+                marquee.style.animation = 'marquee-slide 20s linear forwards';
+                index = (index + 1) % messages.length;
+            }
+
+            updateMarquee();
+            setInterval(updateMarquee, 21000);
+        }
+    </script>
+    <script>
+        window.addEventListener('load', initHeader);
     </script>
     <footer id="footer">
         <div class="footer-container">
